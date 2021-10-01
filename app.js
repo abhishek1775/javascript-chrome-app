@@ -8,7 +8,9 @@ function onLoginSubmit(event) {
     event.preventDefault(); 
     loginForm.classList.add(HIDDEN_CLASSNAME);
     const username = loginInput.value;
-    greeting.innerText = `Hello ${username}`; // 변수를 string에 추가 ${변수명} 으로 표현. "Hello " + username 와 같음.
+    localStorage.setItem("username", username); // key, value
+    //localStorage은 브라우저의 저장소. .setItem, .getItem, .removeItem 등 사용.
+    greeting.innerText = `Hello ${username}`;
     greeting.classList.remove(HIDDEN_CLASSNAME);
 }
 
