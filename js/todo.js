@@ -2,12 +2,12 @@ const toDoForm = document.getElementById("todo-form");
 const toDoInput = toDoForm.querySelector("input");
 const toDoList = document.getElementById("todo-list");
 
+const TODOS_kEY = "todos";
+
 const toDos = [];
 
 function saveToDos() {
-    localStorage.setItem("todos", JSON.stringify(toDos));
-    //localStorage는 array를 저장할 수 없다. 오직 텍스트만 저장 가능.
-    //JSON.stringify()로 array형태의 텍스트로 저장 가능. JSON.stringify()는 JS object나 array나 어떤 것이든 string으로 바꿔줌.
+    localStorage.setItem(TODOS_kEY, JSON.stringify(toDos));
 }
 
 function deleteToDo(event) {
@@ -37,3 +37,11 @@ function handleToDoSubmit(event){
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
+
+const savedToDos = localStorage.getItem(TODOS_kEY);
+
+if(savedToDos !== null) {
+    const parsedToDos = JSON.parse(savedToDos);
+    parsedToDos.forEach((item) => console.log("this is the turn of ", item));
+    //forEach는 array의 각 item에 대해 function을 실행. agument로 item을 줌.
+}
