@@ -4,7 +4,7 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_kEY = "todos";
 
-const toDos = [];
+let toDos = [];
 
 function saveToDos() {
     localStorage.setItem(TODOS_kEY, JSON.stringify(toDos));
@@ -42,6 +42,7 @@ const savedToDos = localStorage.getItem(TODOS_kEY);
 
 if(savedToDos !== null) {
     const parsedToDos = JSON.parse(savedToDos);
-    parsedToDos.forEach((item) => console.log("this is the turn of ", item));
-    //forEach는 array의 각 item에 대해 function을 실행. agument로 item을 줌.
+    toDos = parsedToDos;
+    //기존 localStorage값이 있을 시 배열에 넣기. 프로그램의 시작은 배열이 비어있음.
+    parsedToDos.forEach(paintToDo);
 }
