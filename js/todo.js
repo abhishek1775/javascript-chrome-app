@@ -15,7 +15,6 @@ function deleteToDo(event) {
     console.log(li.id);
     li.remove(); 
     toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
-    //filter: 지우고 싶은 item을 빼고 새 array를 만듦.
     saveToDos();
 }
 
