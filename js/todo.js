@@ -13,8 +13,10 @@ function saveToDos() {
 function deleteToDo(event) {
     const li = event.target.parentElement;
     console.log(li.id);
-    //li의 id를 얻음으로 array에서 뺄 item을 선택가능.
     li.remove(); 
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+    //filter: 지우고 싶은 item을 빼고 새 array를 만듦.
+    saveToDos();
 }
 
 function paintToDo(newTodo) {
@@ -37,7 +39,6 @@ function handleToDoSubmit(event){
     const newToDoObj = {
         text: newTodo,
         id: Date.now(),
-        //값을 제거하기 위해 id를 밀리세컨즈로 부여.
     }
     toDos.push(newToDoObj);
     paintToDo(newToDoObj);
