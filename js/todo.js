@@ -11,14 +11,17 @@ function saveToDos() {
 }
 
 function deleteToDo(event) {
-    const li = event.target.parentElement; 
+    const li = event.target.parentElement;
+    console.log(li.id);
+    //li의 id를 얻음으로 array에서 뺄 item을 선택가능.
     li.remove(); 
 }
 
 function paintToDo(newTodo) {
     const li = document.createElement("li");
     const span = document.createElement("span");
-    span.innerText = newTodo;
+    span.innerText = newTodo.text;
+    li.id = newTodo.id;
     const button = document.createElement("button");
     button.innerText = "X";
     button.addEventListener("click", deleteToDo);
@@ -31,8 +34,13 @@ function handleToDoSubmit(event){
     event.preventDefault();
     const newTodo = toDoInput.value;
     toDoInput.value = "";
-    toDos.push(newTodo);
-    paintToDo(newTodo);
+    const newToDoObj = {
+        text: newTodo,
+        id: Date.now(),
+        //값을 제거하기 위해 id를 밀리세컨즈로 부여.
+    }
+    toDos.push(newToDoObj);
+    paintToDo(newToDoObj);
     saveToDos();
 }
 
@@ -43,6 +51,5 @@ const savedToDos = localStorage.getItem(TODOS_kEY);
 if(savedToDos !== null) {
     const parsedToDos = JSON.parse(savedToDos);
     toDos = parsedToDos;
-    //기존 localStorage값이 있을 시 배열에 넣기. 프로그램의 시작은 배열이 비어있음.
     parsedToDos.forEach(paintToDo);
 }
