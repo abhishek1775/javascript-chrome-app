@@ -14,7 +14,7 @@ function onLoginSubmit(event) {
 }
 
 function paintGreetings(username) {
-    greeting.innerText = `Hello ${username}`;
+    greeting.innerText = `${username}, you are a special person.`;
     greeting.classList.remove(HIDDEN_CLASSNAME);
 }
 

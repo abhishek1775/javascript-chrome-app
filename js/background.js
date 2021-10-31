@@ -6,4 +6,4 @@ const bgImage = document.createElement("img"); //element추가
 
 bgImage.src = `img/${chosenImage}`;
 
-document.body.appendChild(bgImage); //HTML body에 추가
+document.body.appendChild(bgImage); //HTML body에 추가  
